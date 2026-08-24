@@ -20,7 +20,9 @@
     "test:cov": "jest --coverage",
     "heroku-postbuild": "npm run build",
     "seed:products": "node dist/scripts/seed-products.js",
-    "seed:products:dev": "ts-node scripts/seed-products.ts"
+    "seed:products:dev": "ts-node scripts/seed-products.ts",
+    "seed:admin": "node dist/scripts/seed-admin.js",
+    "seed:admin:dev": "ts-node scripts/seed-admin.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",

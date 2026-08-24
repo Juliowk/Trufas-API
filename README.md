@@ -162,11 +162,20 @@ mostram `Administrador criado: ...` no primeiro boot e `Administrador ja existe;
 seed ignorado.` nos seguintes. Reiniciar a aplicação não duplica usuários nem
 sobrescreve a senha em uso.
 
-Para **trocar a senha** depois, remova o registro e reinicie com o novo valor:
+Para **trocar as credenciais** depois, ajuste `ADMIN_EMAIL` / `ADMIN_PASSWORD` no
+`.env` e reaplique com o seed dedicado:
 
 ```bash
-psql "$DATABASE_URL" -c "DELETE FROM admins;"
+npm run seed:admin:dev    # local, via ts-node
+npm run seed:admin        # a partir do build (dist/)
 ```
+
+Diferente do seed do boot, este script **sobrescreve** o administrador existente
+(e-mail e senha) em vez de ignora-lo; se nao houver nenhum, ele cria. Nao e
+preciso apagar a tabela nem reiniciar a aplicacao.
+
+Como a operacao derruba o acesso atual, em producao ela esta bloqueada por
+padrao — para forcar, rode com `ALLOW_ADMIN_RESET=true`.
 
 ## 10. Deploy no Heroku
 
